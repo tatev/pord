@@ -1,0 +1,74 @@
+mixin api-title(method, api, desc, requiresLogin)
+    h3.text-success
+        span(style="text-transform: uppercase")= method
+        | &nbsp;
+        code.lead /#{api}
+        if requiresLogin === true
+            strong.text-danger.pull-right(style='font-size: 18px')
+                i.fa.fa-warning
+                | requires authentication
+        else if requiresLogin
+            strong.text-danger.pull-right(style='font-size: 18px')
+                i.fa.fa-warning
+                | requires role '#{requiresLogin}'
+    h4= desc
+mixin api-info(text)
+    .alert.alert-info= text
+mixin status-code(code, desc, contentType)
+    h3 Response&nbsp;
+        if parseInt(code/100) == 2
+            span.text-success= code
+        else
+            span.text-danger= code
+        | &nbsp;
+        span (#{contentType || (parseInt(code/100) == 2 ? 'application/json' : 'text/plain')})
+        | &nbsp;
+        small= desc
+mixin param(name, desc, type, validation, def, example)
+    tr
+        td(style='font-weight: bold')= name
+        td= desc
+        td.text-center.text-danger(style='font-weight: bold')
+            code= type
+        td.text-danger!= validation
+        td.text-center.text-success(style='font-weight: bold')!= def
+        td.text-primary(style='font-weight: bold')!= example
+mixin param-table-head()
+    thead
+        tr
+            th name
+            th description
+            th type
+            th validation
+            th default
+            th example
+mixin error-table-head()
+    thead
+        tr
+            th code
+            th description
+mixin error(code, desc)
+    tr
+        td.text-danger(style='font-weight: bold')= code
+        td= desc
+mixin param-dd(name, desc, type, validation, def, example)
+    dt= name
+    dd
+        span #{desc}
+    if type
+        dd.text-danger(style='font-weight: bold') TYPE:
+            code= type
+    if validation
+        dd.text-danger!= validation
+    if def
+        dd.text-success DEFAULT: #{def}
+    if example
+        dd.text-primary EXAMPLE: #{example}
+mixin subhead(str)
+    h4.text-primary
+        strong= str
+mixin head(str, lnk)
+    .row
+        hr
+        h2.text-warning(id='#{lnk}')= str
+        hr

@@ -1,0 +1,85 @@
++head('Events API', 'events-api')
+.row
+    +api-title('post','events','Create a new event', true)
+    +subhead('Post data (application/json)')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param('title', 'title', 'String', '')
+    +subhead('Results')
+    +status-code(200)
+    pre
+        | {
+        |     "_id": "534554c2dc906cc44dd46776",
+        |     "title": "My New Event",
+        | }
+    +status-code(500, 'on internal server error')
+    hr
+.row
+    +api-title('get','events','Get the list of events by location')
+    +subhead('Query params')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param('long', 'longitude', 'String', '')
+            +param('lat', 'latitude', 'String', '')
+    +subhead('Results')
+    +status-code(200)
+    pre
+        |[
+        |  {
+        |     "_id": "534554c2dc906cc44dd46776",
+        |     "title": "My New Event",
+        |  }
+        |]
+    +status-code(500, 'on internal server error')
+    hr
+.row
+    +api-title('get','events/:eventId','Get event by id')
+    +subhead('Route params')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param(':eventId', 'event id', 'ObjectId', '')
+    +subhead('Results')
+    +status-code(200)
+    pre
+        | {
+        |     "_id": "534554c2dc906cc44dd46776",
+        |     "title": "My New Event",
+        | }
+    +status-code(500, 'on internal server error')
+    hr
+.row
+    +api-title('put','events/:eventId','Update existing event', true)
+    +subhead('Route params')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param(':eventId', 'event id', 'ObjectId', '')
+    +subhead('Post data (application/json)')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param('title', 'title', 'String', '')
+    +subhead('Results')
+    +status-code(200)
+    pre
+        | {
+        |     "_id": "534554c2dc906cc44dd46776",
+        |     "title": "My New Event",
+        | }
+    +status-code(500, 'on internal server error')
+    hr
+.row
+    +api-title('delete','events/:eventId','Delete existing event', true)
+    +subhead('Route params')
+    table.table.table-bordered.table-striped
+        +param-table-head()
+        tbody
+            +param(':eventId', 'event id', 'ObjectId', '')
+    +subhead('Results')
+    +status-code(200)
+    +status-code(500, 'on internal server error')
+    hr
+
