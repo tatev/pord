@@ -29,6 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 console.log('Initializing express: /api/v1 server');
 var apiServerV1 = require('./api/v1');
 
+app.use('/', function(req, res) {
+    res.render('index', {title: 'PORD'});
+});
+
 app.use('/api/v1', apiServerV1);
 
 app.use('/apidoc', function(req, res) {
